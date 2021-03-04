@@ -6,13 +6,13 @@ volumes:
 
 services:
   db:
-    image: postgres:latest
+    image: postgres:13.0
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./.env
   web:
-    build: berionikkk/yamdb_final:latest
+    image: berionikkk/yamdb_final:latest
     restart: always
     volumes:
       - static:/code/static
