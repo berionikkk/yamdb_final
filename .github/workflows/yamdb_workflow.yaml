@@ -58,8 +58,10 @@ jobs:
         passphrase: ${{ secrets.PASSPHRASE }}
         script: |
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/yamdb_final
-          sudo docker stop $(sudo docker ps -a -q)
-          sudo docker-compose up --build -d        
+          cd yamdb_final
+          sudo docker-compose down
+          sudo docker stop $(sudo docker images -a -q)
+          sudo docker-compose up      
           
   send_message:
     runs-on: ubuntu-latest
