@@ -56,17 +56,10 @@ jobs:
         username: ${{ secrets.USER }}
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.PASSPHRASE }}
-        source: "docker-compose.yaml, nginx.conf"
         script: |
-          cd ~
-          ls -a
-          cd ./code
-          ls -a
-          sudo docker-compose down
-          sudo docker rmi $(sudo docker images -a -q)
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/yamdb_final
-          sudo docker-compose up
-          
+          sudo docker stop $(sudo docker ps -a -q)
+          sudo docker-compose up --build -d        
           
   send_message:
     runs-on: ubuntu-latest
