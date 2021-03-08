@@ -14,10 +14,10 @@ services:
   web:
     image: berionikkk/yamdb_final:latest
     restart: always
+    expose:
+      - 8000
     volumes:
-      - static:/code/static
-    ports:
-      - "8000:8000"
+      - static:/code/static/
     depends_on:
       - db
     env_file:
