@@ -26,8 +26,8 @@ services:
     image: nginx:1.19.7
     restart: always
     volumes:
-      - static:/code/static
       - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - static:/code/static/    
     ports:
       - "80:80"
     depends_on:
